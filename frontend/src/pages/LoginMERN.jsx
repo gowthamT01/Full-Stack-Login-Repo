@@ -26,41 +26,58 @@ const Login = () => {
         navigate("/GetReg");
       }
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err.response?.data?.message || "Login failed");
     }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card shadow p-4" style={{ maxWidth: "400px", width: "100%" }}>
+        
+        <h3 className="text-center mb-4">Login</h3>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            type="email"
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input
+              className="form-control"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="Enter email"
+              required
+            />
+          </div>
 
-        <div>
-          <label>Password</label>
-          <input
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            type="password"
-          />
-        </div>
+          {/* Password */}
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              className="form-control"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              type="password"
+              placeholder="Enter password"
+              required
+            />
+          </div>
 
-        <button type="submit">Login</button>
-      </form>
+          {/* Button */}
+          <button type="submit" className="btn btn-success w-100">
+            Login
+          </button>
+        </form>
 
-      <p>
-        Don't have an account? <Link to="/register">Register Now</Link>
-      </p>
+        <p className="text-center mt-3 mb-0">
+          Don't have an account?{" "}
+          <Link to="/register">Register Now</Link>
+        </p>
+
+      </div>
     </div>
   );
 };
